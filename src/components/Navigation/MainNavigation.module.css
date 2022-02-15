@@ -1,0 +1,7 @@
+.nav a {
+    margin-right: 25px;
+}
+
+.nav a:last-child {
+    margin-right: 0;
+}
