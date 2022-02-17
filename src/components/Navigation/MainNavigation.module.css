@@ -1,5 +1,13 @@
 .nav a {
     margin-right: 25px;
+    transition: color .2s ease-in;
+    font-family: 'Open Sans', arial, sans-serif;
+    font-weight: 700;
+    color: #1f2020;
+}
+
+.nav a:hover {
+    color: #6c63d1;
 }
 
 .nav a:last-child {
