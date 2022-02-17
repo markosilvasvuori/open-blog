@@ -1,13 +1,16 @@
 import BlogItem from './BlogItem';
 import styles from './BlogList.module.css';
 
-const BlogList = ({ blogPosts }) => {
+const BlogList = ({ blogPosts, numberOfVisiblePosts }) => {
+    const blogPostsCopy = [...blogPosts];
+    blogPostsCopy.reverse();
+    
     return (
         <ul className={styles['blog-list']}>
-            {blogPosts.map(post => (
+            {blogPostsCopy.slice(0, numberOfVisiblePosts).map(post => (
                 <BlogItem
-                    key={post.id}
-                    id={post.id}
+                    key={post.postId}
+                    postId={post.postId}
                     title={post.title}
                     date={post.date}
                     author={post.author}
