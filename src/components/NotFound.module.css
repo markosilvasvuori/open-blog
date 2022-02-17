@@ -1,0 +1,14 @@
+.not-found {
+    width: 100%;
+    margin-top: 80px;
+    text-align: center;
+}
+
+.not-found p:first-child {
+    margin-bottom: 25px;
+}
+
+.not-found a {
+    color: #900fe6;
+    text-decoration: underline;
+}
