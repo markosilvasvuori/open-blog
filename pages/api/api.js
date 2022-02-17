@@ -1,31 +1,52 @@
 const handler = async (req, res) => {
+    const URL = 'https://open-blog-nextjs-default-rtdb.europe-west1.firebasedatabase.app/blog-posts';
+
+    const statusHandler = (response, statusCode, msg) => {
+        if (response.ok) {
+            res.status(statusCode).json({ message: msg });
+        } else {
+            res.status(404).json({ message: 'Something went wrong' });
+        }
+    };
+
     if (req.method === 'POST') {
         const data = req.body;
 
-        const response = await fetch('https://open-blog-nextjs-default-rtdb.europe-west1.firebasedatabase.app/blog-posts.json', {
+        const response = await fetch(URL + '.json', {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {'Content-Type': 'application/json'}
         });
 
-        res.status(201).json({ message: 'New post inserted' });
+        statusHandler(response, 201, 'New post inserted');
     }
 
     if (req.method === 'GET') {
-        const response = await fetch('https://open-blog-nextjs-default-rtdb.europe-west1.firebasedatabase.app/blog-posts.json');
-        const data = await response.json();
+        const response = await fetch(URL + '.json');
 
-        res.status(201).json({ message: 'Fetched posts' });
+        statusHandler(response, 200, 'Fetched posts');
+    }
+
+    if (req.method === 'PUT') {
+        const data = req.body;
+        
+        const response = await fetch(`${URL}/${data.postId}.json`, {
+            method: 'PUT',
+            body: JSON.stringify(data),
+            headers: {'Content-Type': 'application/json'}
+        });
+
+        statusHandler(response, 201, 'Updated post');
     }
 
     if (req.method === 'DELETE') {
         const postId = req.body;
         
-        const response = await fetch(`https://open-blog-nextjs-default-rtdb.europe-west1.firebasedatabase.app/blog-posts/${postId}.json`, {
+        const response = await fetch(`${URL}/${postId}.json`, {
             method: 'DELETE',
         });
 
-        res.status(201).json({ message: 'Deleted post' });
+        statusHandler(response, 202, 'Deleted post');
     }
 };
 
