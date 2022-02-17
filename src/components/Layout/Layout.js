@@ -6,9 +6,9 @@ const Layout = ({ children }) => {
     return (
         <div className={styles['page-wrapper']}>
             <Header />
-                <div className={styles.container}>
-                    {children}
-                </div>
+            <div className={styles.container}>
+                {children}
+            </div>
             <Footer />
         </div>
     );
