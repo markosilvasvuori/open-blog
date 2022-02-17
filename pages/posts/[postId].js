@@ -133,12 +133,14 @@ export const getStaticProps = async ({ params }) => {
     const response = await fetch(`https://open-blog-nextjs-default-rtdb.europe-west1.firebasedatabase.app/blog-posts/${params.postId}.json`);
     const post = await response.json();
 
-    return {
-        props: {
-            post
-        },
-        revalidate: 10
-    };
+    if (post) {
+        return {
+            props: {
+                post
+            },
+            revalidate: 1
+        };
+    }
 };
 
 export default PostPage;
