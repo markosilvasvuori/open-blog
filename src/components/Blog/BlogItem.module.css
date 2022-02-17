@@ -4,6 +4,14 @@
     list-style: none;
 }
 
+.blog-item:hover .title {
+    text-decoration: underline;
+}
+
+.blog-item:hover .img-container img {
+    transform: scale(1.05);
+}
+
 .img-container {
     display: flex;
     align-items: center;
@@ -18,22 +26,32 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform .4s ease-in-out;
 }
 
 .info {
     display: flex;
     justify-content: space-between;
     margin: 10px 0;
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     color: #757575;
 }
 
 .title {
     margin-bottom: 10px;
+    font-size: 1.25rem;
     text-transform: capitalize;
 }
 
 .excerpt {
-    max-height: 65px;
+    width: 100%;
+    max-width: 80vw;
+    max-height: 74px;
     overflow: hidden;
+}
+
+@media screen and (min-width: 768px) {
+    .excerpt {
+        max-width: 300px;
+    }
 }
