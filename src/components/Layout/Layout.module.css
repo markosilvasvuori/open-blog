@@ -5,13 +5,14 @@
     align-items: center;
     width: 100%;
     min-height: 100vh;
-    padding-top: 70px;
+    padding-top: 100px;
     padding-left: 25px;
     padding-right: 25px;
-    padding-bottom: 150px; /* Footer height */
-  }
+    padding-bottom: 150px; /* Footer height + 80px extra padding */
+    overflow: hidden;
+}
 
-  .container {
-      width: 100%;
-      max-width: 980px;
-  }
+.container {
+    width: 100%;
+    max-width: 980px;
+}
