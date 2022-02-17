@@ -1,14 +1,11 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 import styles from './BlogItem.module.css';
 
-const BlogItem = ({ id, image, title, date, author, text }) => {
-    const router = useRouter();
-
+const BlogItem = ({ postId, image, title, date, author, text }) => {
     return (
         <li className={styles['blog-item']}>
-            <Link href={'/posts/' + id}>
+            <Link href={'/posts/' + postId}>
                 <a>
                     <div className={styles['img-container']}>
                         <img src={image} alt={title} />
@@ -20,7 +17,7 @@ const BlogItem = ({ id, image, title, date, author, text }) => {
                     <h3 className={styles.title}>{title}</h3>
                 </a>
             </Link>
-                    <p className={styles.excerpt}>{text}</p>
+            <p className={styles.excerpt}>{text}</p>
         </li>
     );
 };
