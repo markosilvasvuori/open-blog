@@ -8,9 +8,6 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>Open Blog | Blog Posts By Anyone</title>
         <meta name="description" content="Blog posts by anyone" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin='anonymous' />
-        <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital@0;1&family=Roboto:wght@700&display=swap" rel="stylesheet" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
