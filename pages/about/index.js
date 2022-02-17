@@ -11,10 +11,7 @@ const About = () => {
             </Head>
             <div>
                 <h1>About</h1>
-                <p>
-                    Got a topic you would like to blog about? Blog it! Don't like something you saw here? Delete it!
-                    Found a typo or want to contribute to an existing blog post? Edit it!
-                    This is a blog where anyone is free to manage the content!
+                <p>Got a topic you would like to blog about? Blog it! Don&apos;t like something you saw here? Delete it! Found a typo or want to contribute to an existing blog post? Edit it! This is a blog where anyone is free to manage the content!
                 </p>
             </div>
         </Fragment>
