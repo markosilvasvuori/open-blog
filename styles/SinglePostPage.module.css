@@ -20,23 +20,56 @@
     text-transform: capitalize;
 }
 
+.text {
+    word-wrap: break-word;
+    white-space: pre-line;
+}
+
+.edit-title {
+    margin: 80px 0;
+    font-size: 2rem;
+    text-transform: capitalize;
+}
+
 .info {
     position: relative;
     display: flex;
     justify-content: space-between;
     margin: 25px 0;
+    font-size: 0.75rem;
+    color: #757575;
+}
+
+.info p {
+    display: flex;
+    flex-direction: column;
+}
+
+.actions button:first-child {
+    margin-right: 15px;
 }
 
 .action-button {
     border: none;
-    border-bottom: 1px solid #0b0f12;
+    border-bottom: 1px solid #1f2020;
+    font-family: 'Roboto', arial, sans-serif;
+    color: #1f2020;
     background-color: transparent;
     cursor: pointer;
+}
+
+.action-button:hover {
+    color: #6c63d1;
+    border-color: #6c63d1;
 }
 
 .confirm-delete {
     width: 100%;
     text-align: center;
+}
+
+.confirm-delete p {
+    display: block;
 }
 
 .confirm-delete button {
@@ -45,6 +78,7 @@
     margin-top: 10px;
     border: none;
     border-radius: 10px;
+    font-family: 'Roboto', arial, sans-serif;
     color: #f8f8f8;
     background-color: #38b000;
     cursor: pointer;
@@ -55,8 +89,29 @@
     background-color: #dc2f2f;
 }
 
+.edited-date {
+    font-style: italic;
+}
+
+.separator {
+    display: none;
+    margin: 0 10px;
+}
+
 @media screen and (min-width: 768px) {
+    .edit-title {
+        font-size: 5rem;
+    }
+
     .img-container {
         max-height: 500px;
+    }
+
+    .info p {
+        flex-direction: row;
+    }
+
+    .separator {
+        display: block;
     }
 }
