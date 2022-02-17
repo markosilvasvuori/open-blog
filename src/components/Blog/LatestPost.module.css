@@ -9,10 +9,19 @@
 .latest::before {
     content: 'Latest';
     position: absolute;
-    top: -25px;
+    top: -28px;
     left: 0;
     color: #757575;
 }
+
+.latest:hover .title {
+    text-decoration: underline;
+}
+
+.latest:hover .img-container img {
+    transform: scale(1.05);
+}
+
 
 .img-container {
     position: relative;
@@ -31,6 +40,7 @@
     height: 100%;
     border-radius: 6px;
     object-fit: cover;
+    transition: transform .4s ease-in-out;
 }
 
 .info {
@@ -48,7 +58,8 @@
 }
 
 .excerpt {
-    max-height: 65px;
+    max-width: 80vw;
+    max-height: 75px;
     overflow: hidden;
 }
 
@@ -71,5 +82,9 @@
     .title {
         margin-bottom: 25px;
         font-size: 3rem;
+    }
+
+    .excerpt {
+        max-width: 450px
     }
 }
