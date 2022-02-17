@@ -27,6 +27,8 @@ const PostPage = ({ post }) => {
         if (!response.ok) {
             throw new Error('Something went wrong.');
         }
+
+        router.push(postId);
     };
 
     const confirmDeleteHandler = () => {
@@ -118,7 +120,7 @@ export const getStaticPaths = async () => {
     }
 
     return {
-        fallback: 'blocking',
+        fallback: true,
         paths: Object.entries(data).map(post => ({
             params: {
                 postId: post[0].toString()
