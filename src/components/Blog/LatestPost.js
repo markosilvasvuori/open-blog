@@ -8,7 +8,7 @@ const LatestPost = ({ blogPosts }) => {
     return (
         <div className={styles.latest}>
                     <div className={styles['img-container']}>
-                        <Link href={'/posts/' + latestBlogPost.id}>
+                        <Link href={'/posts/' + latestBlogPost.postId}>
                             <a>
                                 <img src={latestBlogPost.image} alt={latestBlogPost.title} />
                             </a>
@@ -19,7 +19,7 @@ const LatestPost = ({ blogPosts }) => {
                     <p>{latestBlogPost.date}</p>
                     <p>{latestBlogPost.author}</p>
                 </div>
-                <Link href={'/posts/' + latestBlogPost.id}>
+                <Link href={'/posts/' + latestBlogPost.postId}>
                     <a>
                         <h2 className={styles.title}>{latestBlogPost.title}</h2>
                     </a>
