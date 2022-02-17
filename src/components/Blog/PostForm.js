@@ -84,7 +84,6 @@ const PostForm = ({ onAddNewPost, postData, postId, isEditing, saveEditedPost, c
         } else {
             saveEditedPost(enteredPostData);
             closeEditing();
-            router.push(postId);
         }
     };
 
