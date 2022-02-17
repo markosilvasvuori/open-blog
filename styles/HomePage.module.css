@@ -4,4 +4,26 @@
 
 .second-title {
     margin-bottom: 80px;
+    text-transform: capitalize;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+}
+
+.buttons button:first-child {
+    margin-bottom: 25px;
+}
+
+@media screen and (min-width: 768px) {
+    .buttons {
+        flex-direction: row;
+    }
+    
+    .buttons button:first-child {
+        margin-right: 25px;
+        margin-bottom: 0;
+    }
 }
