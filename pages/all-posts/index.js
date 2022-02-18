@@ -6,13 +6,14 @@ import BlogList from '../../src/components/Blog/BlogList';
 import Button from '../../src/components/UI/Button';
 
 const AllPosts = (props) => {
-    const [visiblePosts, setVisiblePosts] = useState(15);
+    const defaultVisiblePosts = 15;
+    const [visiblePosts, setVisiblePosts] = useState(defaultVisiblePosts);
 
     const loadMorePosts = () => {
         if (props.blogPosts.length > visiblePosts) {
             setVisiblePosts(prevState => prevState + 10);
         } else {
-            setVisiblePosts(15);
+            setVisiblePosts(defaultVisiblePosts);
         }
     };
 
@@ -21,7 +22,6 @@ const AllPosts = (props) => {
             <Head>
                 <title>Open Blog | All Posts</title>
             </Head>
-
             <main>
                 <h1>All Posts</h1>
                 {props.blogPosts &&
@@ -44,10 +44,14 @@ const AllPosts = (props) => {
     )
 };
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
     const response = await fetch('https://open-blog-nextjs-default-rtdb.europe-west1.firebasedatabase.app/blog-posts.json');
     const data = await response.json();
     const blogPosts = [];
+
+    if (!response.ok) {
+        throw new Error('Something went wrong!');
+    }
 
     if (data) {
         Object.entries(data).map(post => {
@@ -59,8 +63,7 @@ export const getStaticProps = async () => {
     return {
         props: {
             blogPosts
-        },
-        revalidate: 10
+        }
     }
 };
 

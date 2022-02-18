@@ -43,10 +43,14 @@ const Home = (props) => {
     )
 };
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
     const response = await fetch('https://open-blog-nextjs-default-rtdb.europe-west1.firebasedatabase.app/blog-posts.json');
     const data = await response.json();
     const blogPosts = [];
+
+    if (!response.ok) {
+        throw new Error('Something went wrong!');
+    }
 
     if (data) {
         Object.entries(data).map(post => {
@@ -58,8 +62,7 @@ export const getStaticProps = async () => {
     return {
         props: {
             blogPosts
-        },
-        revalidate: 10
+        }
     }
 };
 

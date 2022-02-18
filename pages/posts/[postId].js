@@ -7,11 +7,12 @@ import PostForm from '../../src/components/Blog/PostForm';
 import styles from '../../styles/SinglePostPage.module.css';
 import NotFound from '../../src/components/NotFound';
 
-const PostPage = ({ post }) => {
+const PostPage = ({ blogPosts }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [confirmDelete, setConfirmDelete] = useState(false);
     const router = useRouter();
     const { postId } = router.query;
+    const post = blogPosts[postId]; 
 
     const editPostHandler = () => {
         setIsEditing(!isEditing);
@@ -60,7 +61,13 @@ const PostPage = ({ post }) => {
             {isEditing &&
                 <Fragment>
                     <h2 className={styles['edit-title']}>Edit post</h2>
-                    <PostForm closeEditing={editPostHandler} isEditing={isEditing} postData={post} postId={postId} saveEditedPost={saveEditedPostHandler} />
+                    <PostForm 
+                        closeEditing={editPostHandler} 
+                        isEditing={isEditing} 
+                        postData={post} 
+                        postId={postId} 
+                        saveEditedPost={saveEditedPostHandler} 
+                    />
                 </Fragment>
             }
             {!isEditing &&
@@ -72,7 +79,13 @@ const PostPage = ({ post }) => {
                             </div>
                             <div className={styles.info}>
                                 {!confirmDelete &&
-                                    <p>{post.date} <span className={styles.separator}>|</span> {post.editedDate && <span className={styles['edited-date']}>{`Edited: ${post.editedDate}`}</span>} {post.editedDate && <span className={styles.separator}>|</span>} {post.author}</p>
+                                    <p>{
+                                        post.date} 
+                                        <span className={styles.separator}>|</span> 
+                                        {post.editedDate && <span className={styles['edited-date']}>{`Edited: ${post.editedDate}`}</span>} 
+                                        {post.editedDate && <span className={styles.separator}>|</span>} 
+                                        {post.author}
+                                    </p>
                                 }
                                 {!confirmDelete &&
                                     <div className={styles.actions}>
@@ -111,35 +124,18 @@ const PostPage = ({ post }) => {
     );
 };
 
-export const getStaticPaths = async () => {
-    const response = await fetch(`https://open-blog-nextjs-default-rtdb.europe-west1.firebasedatabase.app/blog-posts.json`);
-    let data = await response.json();
+export const getServerSideProps = async () => {
+    const response = await fetch('https://open-blog-nextjs-default-rtdb.europe-west1.firebasedatabase.app/blog-posts.json');
+    const blogPosts = await response.json();
 
-    if (!data) {
-        data = [];
+    if (!response.ok) {
+        throw new Error('Something went wrong!');
     }
 
     return {
-        fallback: true,
-        paths: Object.entries(data).map(post => ({
-            params: {
-                postId: post[0].toString()
-            }
-        }))
-    }
-};
-
-export const getStaticProps = async ({ params }) => {
-    const response = await fetch(`https://open-blog-nextjs-default-rtdb.europe-west1.firebasedatabase.app/blog-posts/${params.postId}.json`);
-    const post = await response.json();
-
-    if (post) {
-        return {
-            props: {
-                post
-            },
-            revalidate: 1
-        };
+        props: {
+            blogPosts
+        }
     }
 };
 
